@@ -5,11 +5,11 @@ This program that automatically clicks in the middle of the screen and develop w
 - Jupyter Notebook.
 
 # Used Library?
-- pynput
+pynput
 ```
 pip install pynput
 ```
-- pyautogui
+pyautogui
 ```
 
 pip install pyautogui

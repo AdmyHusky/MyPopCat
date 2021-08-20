@@ -1,0 +1,69 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.4
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+```{python}
+# %autosave 0
+```
+
+```{python}
+from pynput import keyboard
+import pyautogui
+import time
+```
+
+```{python}
+#set delay time and count
+delay = 4
+count = 1
+
+# Get the size of the primary monitor.
+screenWidth, screenHeight = pyautogui.size() 
+
+# Get center size of Width monitor.
+centerWidth = screenWidth/2
+centerWidth = int(centerWidth)
+
+# Get center size of Height monitor.
+centerHeight = screenHeight/2
+centerHeight = int(centerHeight)
+
+def on_press_start(key):
+    if key == keyboard.Key.shift:
+        print('starting...')
+        return False
+    
+
+def on_press_loop(key):
+    if key == keyboard.Key.enter:
+        return False
+
+with keyboard.Listener(on_press=on_press_start) as listener:
+    listener.join() # wait for shift...
+
+with keyboard.Listener(on_press=on_press_loop) as listener:
+    while(True):
+        # Move the mouse to center monitor.
+        pyautogui.moveTo(centerWidth, centerHeight)
+        pyautogui.click()
+        print(count)
+        time.sleep(delay)
+        count += 1
+        if not listener.running:
+            print('break')
+            break
+```
+
+```{python}
+
+```
